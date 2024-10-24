@@ -14,11 +14,8 @@ class host_Window_class(QDialog):
         self.setWindowTitle("Host Window")
 
         dialogLayout = QVBoxLayout()
-        formLayout = QFormLayout()
-        formLayout.addRow("hostname", QLineEdit())
-        formLayout.addRow("address", QLineEdit())
-        formLayout.addRow("Path", QLineEdit())
-        formLayout.addRow("password", QLineEdit())
+        elements = self.init_elements()
+        formLayout = self.add_elements_layout(elements)
 
         dialogLayout.addLayout(formLayout)
 
@@ -33,6 +30,25 @@ class host_Window_class(QDialog):
 
         dialogLayout.addWidget(buttons)
         self.setLayout(dialogLayout)
+
+
+    def init_elements(self):
+        self.hostname = QLineEdit()
+        self.address = QLineEdit()
+        self.path = QLineEdit()
+        self.password = QLineEdit()
+
+        return {self.hostname: "hostname",
+                self.address: "address",
+                self.path: "path",
+                self.password: "password"}
+
+    def add_elements_layout(self, elements: dict):
+        formLayout = QFormLayout()
+        for attribute, name in elements.items():
+            formLayout.addRow(name, attribute)
+        return formLayout
+
 
     def submit(self):
         print("Submit Clicked")

@@ -37,13 +37,12 @@ class client_Window_class(QDialog):
 
 
 
+
     def submit(self):
         if self.path_client.text() == '':
             Activate_PopUp("No Path Provided")
         else:
             pass
-
-            
 
     def cancel(self):
         self.reject()
